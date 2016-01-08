@@ -1,510 +1,282 @@
-# Waste Management Use Case
-
-# Introduction
-
-The problem deals with the waste Management in Sigra,Up,India.The Environment consists of two types of residents. “Good” residents always go to the designated trash bins. “Typical” residents decide where to go based on the personal choice.
-All the waste Management is processed by a waste Management company(Role played by developers),containing waste transport vehicle with their workers.
-Neighbourhood trash bins located in each community and emptied daily by the waste management vehicle.The waste management company have to make sure that each of the resident must use the trash bins for the waste dumping purpose and educate them to dump the waste effectively.
-The Environment also consists of Pedestrians across the area of the game.The pedestrians are randomly moving on the streets. When they are within radius of any street dumping site. 
-Pedestrians may choose to take a photo of any residents who are currently there at the same time, with their smart phones and post on a social network platform.
-
-# Actors
-
--**Resident**    
--**Pedestrians**    
--**Neighbourhood trash bin**   
--**Street Posts**   
--**Street dumping sites**   
--**Waste transport vehicle**   
--**Waste transport worker**   
--**Waste management company (role played by the developer)**   
-
-# Getting Started
-To work with the TQL you will need to login into the **TQL Studio**.
-Open the following URL in a browser of your choice: schack.tie.org:<port> (You will have to use the port provided to you)
-Login credentials are, Username: <email id>, default password: <groupid>
-On the home screen you see a tile for "IOT Simulated Apps". Clicking on this will take you to the Apps.
-Click on the Waste Management application to open it. 
-On the Waste Management screen, you will find a "Queries" tab. 
-Clicking on the "Queries" tab will open the editor where you can create, edit and execute queries.
-This Screen will also give you the URL to access application as a web service from external application.
-
-# Queries to access the Models:
-
-## Pedestrians:
-
-**Find all Pedestrians (****Using Find All****)**
-
-```
-{
-    "Query": {
-        "Find": {
-            "Pedestrian": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        }
-    }
-}
-```
-
-**Find a Pedestrian by Name (****Using where condition****)**
-
-```
-{
-    "Query": {
-        "Find": {
-            "Pedestrian": {
-                "Name": {
-                    "eq": "Pedestrian-1"
-                }
-            }
-        }
-    }
-}
-```
-
-**Count the number of Pedestrians (****Using count****)**
-
-```
-{
-    "Query": {
-        "Find": {
-            "Pedestrian": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        },
-        "SetResponseData": {
-            "key": "Message.Value.Pedestrian.Count",
-            "value": "[:$Response.Message.Value.Find/count(Result):]"
-        },
-        "DelResponseData": {
-            "key": "Message.Value.Find"
-        }
-    }
-}
-```
-
-**List of Pedestrian(s) at a particular point**
-
-```
-{
-    "Query": {
-        "Find": {
-            "Pedestrian": {
-                "StartLocation": {
-                    "latitude": {
-                        "eq": "25.3099937400"
-                    },
-                    "longitude": {
-                        "eq": "82.9870729900"
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
-## Residents:
-
-**Find a list of all Residents**
-
-```
-{
-    "Query": {
-        "Find": {
-            "Resident": {
-                "Id": {
-                    "\_ne": ""
-                }
-            }
-        }
-    }
-}
-```
-
-**Find a particular Resident**
-
-```
-{
-    "Query": {
-        "Find": {
-            "Resident": {
-                "Name": {
-                    "eq": "Resident-1"
-                }
-            }
-        }
-    }
-}
-```
-
-**Count all Residents**
-
-```
-{
-    "Query": {
-        "Find": {
-            "Resident": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        },
-        "SetResponseData": {
-            "key": "Message.Value.Resident.Count",
-            "value": "[:$Response.Message.Value.Find/count(Result):]"
-        },
-        "DelResponseData": {
-            "key": "Message.Value.Find"
-        }
-    }
-}
-```
-
-## StreetBlocks
-
-**Find all Street Blocks**
-
-```
-{
-    "Query": {
-        "Find": {
-            "StreetBlock": {
-                "Id": {
-                    "\_ne": ""
-                }
-            }
-        }
-    }
-}
-```
-
-**Count all StreetBlocks**
-
-```
-{
-    "Query": {
-        "Find": {
-            "StreetBlock": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        },
-        "SetResponseData": {
-            "key": "Message.Value.StreetBlock.Count",
-            "value": "[:$Response.Message.Value.Find/count(Result):]"
-        },
-        "DelResponseData": {
-            "key": "Message.Value.Find"
-        }
-    }
-}
-```
-
-**List of StreetBlock at a particular point**
-
-```
-{
-    "Query": {
-        "Find": {
-            " StreetBlock": {
-                " LL": {
-                    "latitude": {
-                        "eq": "25.3141932"
-                    },
-                    "longitude": {
-                        "eq": "82.98308487"
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
-## Trash Bins
-
-**Find all TrashBins:**
-
-```
-{
-    "Query": {
-        "Find": {
-            "TrashBin": {
-                "Id": {
-                    "\_ne": ""
-                }
-            }
-        }
-    }
-}
-```
-
-**Count All Trash bins:**
-
-```
-{
-    "Query": {
-        "Find": {
-            "TrashBin": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        },
-        "SetResponseData": {
-            "key": "Message.Value.TrashBin.Count",
-            "value": "[:$Response.Message.Value.Find/count(Result):]"
-        },
-        "DelResponseData": {
-            "key": "Message.Value.Find"
-        }
-    }
-}
-```
-
-**List of TrashBin at a particular point**
-
-```
-{
-    "Query": {
-        "Find": {
-            "TrashBin": {
-                "Loc": {
-                    "latitude": {
-                        "eq": "25.3141932"
-                    },
-                    "longitude": {
-                        "eq": "82.98308487"
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
-## WasteTransport vehicle
-
-**Find all WasteTransport vehicle :**
-
-```
-{
-    "Query": {
-        "Find": {
-            "WasteTransportVehicle": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        }
-    }
-}
-```
-
-**Find a WasteTransportVehicle by Name (****Using where condition****)**
-
-```
-{
-    "Query": {
-        "Find": {
-            " WasteTransportVehicle ": {
-                "Name": {
-                    "eq": " WTV-1"
-                }
-            }
-        }
-    }
-}
-```
-
-**Count the number of**  **WasteTransportVehicle** **(****Using count****)**
-
-```
-{
-    "Query": {
-        "Find": {
-            " WasteTransportVehicle ": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        },
-        "SetResponseData": {
-            "key": "Message.Value. WasteTransportVehicle.Count",
-            "value": "[:$Response.Message.Value.Find/count(Result):]"
-        },
-        "DelResponseData": {
-            "key": "Message.Value.Find"
-        }
-    }
-}
-```
-
-**List of WasteTransportVehicle (s) at a particular point**
-
-```
-{
-    "Query": {
-        "Find": {
-            " WasteTransportVehicle ": {
-                " ParkedLocation ": {
-                    "latitude": {
-                        "eq": " 25.311599 "
-                    },
-                    "longitude": {
-                        "eq": " 82.9849042 "
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
-## WasteTransportWorker
-
-**Find all WasteTransportWorker (****Using Find All****)**
-
-```
-{
-    "Query": {
-        "Find": {
-            " WasteTransportWorker": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        }
-    }
-}
-```
-
-**Find a WasteTransportWorker by Name (****Using where condition****)**
-
-```
-{
-    "Query": {
-        "Find": {
-            " WasteTransportWorker ": {
-                "Name": {
-                    "eq": " WTW-1"
-                }
-            }
-        }
-    }
-}
-```
-
-**Count the number of**  **WasteTransportWorker** **(****Using count****)**
-
-```
-{
-    "Query": {
-        "Find": {
-            " WasteTransportWorker ": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        },
-        "SetResponseData": {
-            "key": "Message.Value. WasteTransportWorker.Count",
-            "value": "[:$Response.Message.Value.Find/count(Result):]"
-        },
-        "DelResponseData": {
-            "key": "Message.Value.Find"
-        }
-    }
-}
-```
-
-**List of WasteTransportWorker (s) at a particular point**
-
-```
-{
-    "Query": {
-        "Find": {
-            " WasteTransportWorker ": {
-                " CurrentLocation ": {
-                    "latitude": {
-                        "eq": " 25.31133069 "
-                    },
-                    "longitude": {
-                        "eq": " 82.99034186 "
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
-# API Macros
-##### Name:
-##### Description:
-##### Attribute:
-##### Example: 
-#
-
-# Querying using http client
-
-URL: [http://sandbox.atomiton.com:9098/fid-watermanagement](http://sandbox.atomiton.com:9098/fid-watermanagement)
-
-Method: Post
-
-Payload: The  desired query, e.g:
-
-```
-{
-    "Query": {
-        "Find": {
-            "Pedestrian": {
-                "Id": {
-                    "ne": ""
-                }
-            }
-        }
-    }
-}
-```
-
-Result: Output of the Query
-
-# Subscribing through a web-socket
-
-URL: [ws://sandbox.atomiton.com:9098/fid-watermanagementws](ws://sandbox.atomiton.com:9099/fid-watermanagementws)
-
-Using a websocket client, connect to the above URL.
-
-The request will look like this:
-
-```
-{
-    "Query": {
-        "Find": {
-            "Resident": {
-                "Id": {
-                    "\_ne": ""
-				}    
-			}
-		}  
-	}
-}
-```
-
-Sid: is a unique identifier for the Subscription.
-
-Topic: Is the topic to subscribe to, e.g.:
-
-TQL.Update.wastemanagement.distribution.Resident.Name.\*
-
-TQL.Update.wastemanagement.distribution. Resident.\*
-
-TQL.Create.wastemanagement.distribution. Resident.\*
+# Waste Management in India
+## Why Waste Management
+
+Describe the waste management problem in India
+
+## Theme Overview
+### Set Up
+This hackathon game is set up in the city of Sigra *(Varanasi, UP)* in India in a small area of 1 sq km out of town of 1535_ sq kilometers.  The following actors and resources are in play:
+##### Residents:
+2,500 residents who need to dispose of 15 liters of household waste (garbage) each day. Residents choose between two types of behaviors – 
+1. dispose garbage at the designated waste bins in his/her neighborhood, or
+2. throw garbage on the streets, where street dump sites have accumulated.
+
+##### Resources:
+* 25 neighborhood trash bins
+* 50 street dump sites
+* 121 street posts, one at each street intersection
+* 3 waste transport workers driving waste transport vehicles
+* 1 landfill
+
+##### Waste Management Company:
+A private company contracted with the government to transport residential wastes to landfills. It manages the waste transport workers and vehicles.
+
+### The Developer’s Role
+As a developer, you play the role of the Waste Management Company in this game. Your primary goal is to maximize the quantity of waste you can transport because the government payment you receive is weight-based: the more you can transport, the more revenue you can make.
+ 
+Your game score is determined by the total revenue you earn less the costs incurred. It will be one of the main factors in evaluating your hackathon performance.
+ 
+### The Rhythm
+The game activities run on a simulated daily cycles according to an artificial clock with or without your intervention. One day in the game is equivalent to 60 secs in real time. The game repeats for 30 days before it ends.
+ 
+## How It Works
+
+### The Main Character
+
+The main character in this game is the residents.
+
+##### Waste disposal and options
+Each resident disposes of 15 liters of garbage daily, at some time between 9 AM and 2 PM. Each day the resident makes a decision on the destination, which can be
+
+1. The designated trash bin in his/her neighborhood
+2. One of the street dump sites
+ 
+The resident evaluates his/her options each day through *Utility Functions*, a set of variables that determines the value of different options to him/her. See the Utility Functions section for details.
+ 
+**“Good” and “Typical” residents**: Not every resident is the same, however. They value different things differently. Some residents will diligently dispose of garbage at designated trash bins regardless of other factors. Others’ behaviors vary day to day based on external influences.
+
+**It matters to the Waste Management Company**: if all residents stick to the neighborhood trash bins, your job would be much easier as a Waste Management Company, because your workers can stop at fewer sites and pick up more waste efficiently, rather than drive around the city to gather waste on the streets. You will be able to maximize your revenue if you can find ways to convince residents to dispose at the trash bin.
+
+##### Vigilantes
+The residents can potentially play enforcement roles themselves *(act as “vigilantes”)* to produce desirable social behaviors in the community. Specifically, they may take a photo when they spot someone throwing garbage on the streets, and post that person’s picture on a social network website. This acts as social deterrence, which will reduce the likelihood of dumping behavior.
+ 
+Taking photos of others may be a hassle or embarrassment, so not every resident will play the “vigilante” when he/she sees dumping behavior. Each resident decides whether to play this role by a Utility Function – *U*(p), which is a set of variables that determines the value of taking photos to him/her. See the Utility Functions section for details.
+
+##### Influencers
+Each resident has the potential to influence other residents’ behaviors. Most basically, a resident is influenced by how his/her friends dispose of garbage. In addition, you as the Waste Management Company can pick “Influencers” and feature them in your educational campaigns, which will raise the awareness level of all residents. More details on influencer campaigns are included in the Utility Function section and the Developer’s Guide section.
+
+##### Utility Functions – Garbage Disposal
+Each resident makes daily decisions based on a set of parameters that matter to him/her.  The resident compares *U*(b) – the utility of disposing at his/her neighborhood trash bin with multiple *U*(s), the utility of disposing at street dump sites. Whichever *U* value is the highest will become the resident’s destination.
+ 
+*U*(b) is determined by the following factors:
+
+1. Distance of walking – the longer the distance between home and destination, the lower the utility value
+2. Peer influence – the higher percent of friends who dispose at designated bins, the more value it is for the resident to do so himself/herself. Although you will not know who are friends with whom in the game, you know for sure that residents’ behaviors influence each other
+3. Habit – the more days the resident dump on the street, the more likely he is going to do it again, and same is true for disposal at designated trash bins
+4. Cash incentive – there is a way for you to directly incentivize good behaviors by giving a (small) cash amount to the resident each time he disposes at the trash bin. You can only do this if you have a means of detecting the resident coming close to trash bins. This can be accomplished by installing on the trash bins controllers that can detect the Mac ID’s of the resident’s smart phone.  For details see the Developer’s Guide section.
+ 
+__*U*(s) is determined by the following factors__:
+
+1. *Awareness* – awareness of the negative impacts of dumping on streets will make doing it less desirable. Two things can increase awareness:
+  * Context-based education: you as the Waste Management Company can send educational messages to residents when they are in the relevant context (next to the trash bins or next to a street dump site). Such messages will increase the recipient's’ awareness level, but only if they receive them while in the context. You can detect resident’s presence in those contexts by instrumenting controllers that detect smartphone Mac ID’s. See the Developer Guide section for details.
+  * Educational campaigns: you can run educational campaigns that feature influencers. Influencers themselves are role model residents. The better track record an influencer has in using the designated trash bins himself/herself, the more power he/she has in increasing the awareness level of all the residents through the campaign. Choosing the right influencers are important for you.
+2. *Distance of walking* - the longer the distance between home and destination, the lower the utility value
+3. *Peer influence* – the higher percent of friends who dump on streets, the more value it is for the resident to do so himself/herself. Although you will not know who are friends with whom in the game, you know for sure that residents’ behaviors influence each other
+4. *Social deterrence* – the photos taken by vigilantes of other residents dumping deter the dumping behavior. It has two parts:
+  * Direct deterrence – if the resident’s own photo is ever taken, it is a strong deterrence
+  * Social exposure – being exposed to more number of such photos posted in general, even if not one’s own, will deter the behavior
+5. *Habit* – the more days the resident dump on the street, the more likely he is going to do it again. If he has been to one particular street dump site, he is more likely to go there again.
+6. *Size of the dump site* – the bigger the volume of waste accumulated at a street site, the more “attractive” it is for residents to dump there too.
+ 
+##### Utility Functions – Taking Photos
+The resident evaluate utility function *U*(p) value daily to decide whether to play the vigilante role by taking photos if he/she spots someone dumping on the streets. If *U*(p) > than 0, the resident will take photos, if *U*(p) <=0, he/she will not.
+ 
+*U*(p) is determined by the following factors:
+
+1. Awareness – this is the same awareness that determines U(s). Higher level of awareness increases the tendency to take photos.
+2. Social exposure – this is the same social exposure factor that influence social deterrence in U(s). Being exposed to more number of photos posted by all in general encourages the resident to take photos.
+3. Incentives – incentives for taking photos. It comes from two sources:
+  * The more number of residents in the community participate in taking and posting photos, the higher the incentive for the resident to do it himself/herself
+  * You as the Waste Management Company can offer recognition to increase all residents’ incentive. Recognition means making an announcement to reward top vigilantes and
+4. Cost of action – there is a cost of hassle and risk of embarrassment to taking the photo
+5. Personal preference – although all residents are influenced by the same above factors, each resident is also different in his/her individual preference
+ 
+###A Typical Day
+#####8 AM
+The residents compare utility functions and decide their garbage disposal destinations.
+
+#####9 AM – 2 PM
+Each resident chooses a random time during this period and walk from home to his/her garbage disposal destination.
+ 
+When the resident is not on the trip to dispose of garbage, he/she will be walking around town. When spotting someone dumping on streets, he/she will decide whether to take a photo and post online.
+
+#####10 AM – 4 PM
+The waste transport workers are driving the vehicles around to pick up garbage. Between 12 NOON – 1 PM the workers take lunch break.
+
+#####5 PM
+The total waste transported on the day is calculated and revenue and costs are calculated.
+ 
+###Other Resources – Streets
+#####Streets
+The backdrop of the game happens on a grid structure that represents streets. Horizontal and perpendicular streets intersect with each other at intersections. Each section of the street is 100 meters in length. There are a total of 100 such 100x100 squares on an area of land of 1 sq km. All actors, including the residents and the waste transport workers, move along the streets. Trash bins and street dump sites are all located on the streets.
+ 
+You can locate streets by their IDs or their coordinates. For all practical purposes, the Earth is considered flat here.
+ 
+###Other Resources – Street Posts
+There is one street posts at each street intersection.
+#####Odor Sensors
+Odor sensors can be instrumented on the street posts. It can detect odors from street dump sites located on adjacent streets next to the post. “Adjacent” is defined as the four arms of streets extending from the center of the street posts (see image).
+The odor sensors have a detection range of *50 meters*, report data every *1 hour*, and cost *$2* each to install.
+ 
+Knowing where the street dump sites are will help you:
+
+1. Route your waste transport workers more efficiently *(see Waste Transport Workers section)*
+2. Decide where it is worthwhile to install controllers *(see the next section)*
+ 
+##### Controllers
+Controllers are single board computers that can do a number of things; specifically to detect and identify the Mac ID’s of residents’ smartphones via Bluetooth in this game. They can be installed on the street posts. They have a Bluetooth detection range of *10 meters*, and cost *$50* each to install.
+ 
+Controllers and odor sensors in combination help you detect that a resident is near a street dump site. This is the time to send context-based educational messages that can increase the *awareness* level of the resident. The number of residents coming by the dump site location can help you infer the size of the dump site, information you can use to efficiently route your waste transport workers.
+ 
+### Other Resources – Neighborhood Trash Bins
+##### Capacity and RF Sensors
+There are *25* trash bins. Each trash bin has a volume capacity of *2 cubic meters*. As the Waste Management Company, you can install radio frequency sensors in the trash bins to detect how full they are. The RF sensors report a value of *Percent Filled every* 1 hour, and *costs* $5 each to install.
+ 
+Knowing which trash bins are more filled than others will help you more efficiently route your waste transport workers *(see Waste Transport Workers section)*.
+##### Controllers
+Controllers are single board computers that can do a number of things; specifically to detect and identify the Mac ID’s of residents’ smartphones via Bluetooth in this game. They can be installed in the trash bins. They have a Bluetooth detection range of *10 meters*, and cost *$50* each to install.
+ 
+Controllers help you detect that a resident is near a trash bin. This is the time to send context-based educational messages that can increase the *awareness* level of the resident.
+ 
+### Other Resources – Street Dump Sites
+The street dump sites are randomly located on the streets.
+
+##### Size
+The quantity of the waste and the size of the site increase as residents dump more garbage, until the waste management workers pick up the waste. The larger the volume of the waste grows into, the more “attractive” it becomes for residents to dump at the site.
+
+##### Odor
+The dump sites emit odor, which can be detected by odor sensors installed on the adjacent street posts (see Street Posts section).
+ 
+### Other Resources – Waste Transport Workers
+##### Routes and Schedule
+The waste transport workers follow routes in their daily work. The route is a list of destinations and their sequence. Each worker has a default route, which consists only of neighborhood trash bins. The default route will be followed if on any day, the worker does not receive a different route instruction from you.
+ 
+You as the Waste Management Company can provide route instructions to workers. Your route can consist of a sequential list of trash bins as well as streets locations with street dump sites to visit. You can detect the presence of street dump sites from odor sensors. Give good route instructions will help the workers pick up more waste and increase the waste management company’s revenue.
+ 
+Each worker and the vehicle operate from 10 AM to 4 PM. The vehicle drives at 40 kilometers per hour during business hours.  At each trash bin or street dump site, it stops for 15 minutes. It also stops between 12-1 for worker’s lunch break. Therefore, the more the waste is concentrated at the designated trash bins, the more efficient the pick up. If waste is dispersed on many streets, workers will be able to pick up less in a fixed amount of time.
+
+##### Volume Capacity
+Each worker’s truck has a volume of 8 cubic meters. If the truck becomes full in the middle of the day, the worker will immediately drive to the landfill, empty it, and then resume the remaining route.
+
+##### Worker Slack
+Workers have tendencies to slack during work hours. Slack is defined as: stopping the vehicle for longer than 15 minutes during operating hours. Worker slack can be reduced by your monitoring and incentives:
+ 
+1. A worker receiving a notice (message) from you at the time of slack will reduce the tendency for future repeat
+2. A worker will reduce slack if you promise bonuses based on the weight of waste transported
+ 
+See Developer’s Guide section on how you can do these.
+
+##### OBD
+The vehicle can be instrumented with a controller to transmit OBD data. OBD data will allow you to monitor the location and speed of your waste transport workers and detect worker slack. The controller sends data every 5 minutes in the game. It costs *$65* each to install (a one time fee), and thereafter *$10* per vehicle per month as data subscription fee.
+ 
+ 
+##The Developer’s Guide
+
+ 
+This section contains three parts.  Part 1 describes the models running in the system and their attributes. Part 2 describes the queries, subscriptions or notifications available to you. Part 3 describes the actions/interventions you can take via your app to optimize the Waste Management Company’s performance results.
+
+### Part 1. Models and attributes
+
+ 
+|Models and attributes|Descriptions|
+|--------|--------|
+|***Residents***||
+|Id *(String)*|Id of the resident|
+|LocationHome *(Object)*|Location of resident’s home|
+|CaughtOnCamera *(list of Integers)*|List of all ticks when a photo of this resident was taken dumping garbage on the street.|
+|PhotosTaken *(Integer)*|Number of photos taken by this resident of others dumping garbage on the street|
+|***Trash Sites****|***Supertype of Trash Bin and Street Dump site (used in queries which want to find all sites regardless of type)***|
+|Id *(String)*|Id of the trash site|
+|Location *(Object)*|Site location *(X and Y grid coordinates and optional Geolocation data)*|
+|***Neighborhood Trash Bins***|***Subtype of Trash Site***|
+|Id|Inherited from Trash Site|
+|Location|Inherited from Trash Site|
+|Capacity *(Int)*|Maximum amount of garbage that bin can hold*(in liters)*|
+|HasIBeacon *(Boolean)*|If true, bin can detect nearby residents|
+|HasRF *(Boolean)*|If true, bin can report current fill percentage|
+|PercentFilled *(Int)*|Current percentage of trash bin that is used *(always 0 if bin is not instrumented with RF sensor)*|
+|***Street dump sites****|***Subtype of Trash Site***|
+|Id|Inherited from Trash Site|
+|Location|Inherited from Trash Site|
+|***Street posts***|***Each street intersection has one***|
+|Id *(String)*|Id of Street post|
+|Location *(Object)*|Post location *(X and Y grid coordinates and optional Geolocation data)*|
+|IsInstrumented *(Boolean)*|If true, post can detect nearby Street Dump sites making them visible|
+|***Waste transport worker***||
+|Id *(String)*<br/><br/>SmartphoneId *(String)*|Id of worker<br/><br/>Id of worker’s smartphone *(this value is unique)*|
+|LandfillLoc *(Object)*|Location of Landfill used by the worker. When worker’s truck is full, worker will automatically drive to landfill to dispose of collected garbage.|
+|Route *(list of Objects)*|List of trash sites queued for the day. Can be set by player. If none are present a default is used|
+|RouteDft *(list of Objects)*<br/><br/>HasOBD *(Boolean)*|Default route of the worker that is set up at game start. Contains only trash bins. *(READ ONLY!)*<br/><br/>Flag indicating if the worker’s vehicle has a tracker|
+|Location *(Object)*|Current location of the worker. Present only if HasOBD is true|
+|Capacity *(Integer)*|Maximum amount of garbage that worker’s truck can hold. Once capacity is reached, a trip to landfill immediately follows.|
+|LandFillTrips *(Integer)*|Number of trips to landfill. Reset each day.|
+|***Waste management company***||
+|Id *(string)*|Id of the company|
+|AccountBalance *(Double)*|Currently available funds.|
+|BaseRevenue *(Double)*|Amount received each month regardless of performance. Set by game rules *(can be 0)*.|
+|Revenue *(Double)*|Amount earned through disposing of garbage this month|
+|LifetimeRevenue *(Double)*|Total amount of earned revenue during simulation|
+|WasteVol *(Integer)*|Amount of disposed garbage this month *(in liters)*|
+|LifetimeWasteVol *(Integer)*|Total amount of disposed garbage during simulation|
+ 
+_\*Note: Each trash site has an internal visibility flag. Queries for Trash Site and/or Street Dump sites will only return visible results. Trash Bins are always visible. To make a Street Dum site visible, instrument nearby Street Post._
+ 
+### Part 2. What information you have and how
+ 
+||Descriptions and API|
+|--------|--------| 
+||***Residents related***|
+|1|Query the ResidentID, LocationHome, SmartphoneId<br/><br/>Query the Residents Model. There are 2500 residents in total. You can get data for all 2500 Residents using following query. Each Resident has an Id  in the following format: Resident[0], Resident[1], … Resident[2499]<br/><br/>&lt;Query&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/>&lt;/Query&gt;<br/><br/>In order to Query a particular Resident *(say – Resident[80])* by specific Id simply replace<br/><br/>&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;**&lt;Id eq=”Resident[80]”&gt;**<br/><br/>Response Contains all the parameters listed in the Resident Model above. ResidentID, LocationHome, and SmartphoneId are part of the model.<br/><br/>**Sample Response**:<br/><br/>&lt;Find Status="Success"&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Resident[0]&lt;/Id&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId&gt;vcp7j77ljm-1451422269089&lt;/SmartphoneId&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LocationHome&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;47.0&lt;/X&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;100.0&lt;/Y&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LocationHome&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;PhotosTaken&gt;0&lt;/PhotosTaken&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;IsInfluencer&gt;false&lt;/IsInfluencer&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/>&lt;/Find&gt;<br/>|
+|2|Query the residents’ DestinationType<br/><br/>*Resident’s DestinationType is hidden and changing attribute based on the random simulation. As a developer you are entitled to execute a query that returns the current running stats (Day-to-Day basis) of the system. There is no limit to number of times you can execute the statistics query.*<br/>&lt;Atomiton.TqlInterface.GetDailyStats/&gt;<br/><br/>**Response:**|
+|3|Query the residents’ “Influencer” status<br/></br/>*Query the Residents Model. There are 2500 residents in total. You can get data for all 2500 Residents who are Influencers by executing the following query. Each Resident has an Id  in the following format: Resident[0], Resident[1], … Resident[2499]*<br/><br/>&lt;Query&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;IsInfluencer&gt;true&lt;/IsInfluencer&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/>&lt;/Query&gt;<br/><br/>*In order to Query a particular Resident’s Influencer status (say – Resident[80]) by specific Id simply replace*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;**&lt;Id eq=”Resident[80]”&gt;**<br/><br/>*Response Contains all the parameters listed in the Resident Model above. IsInfluencer is part of the model. If there no results the response is as follows:*<br/><br/>***Sample Null Response:***<br/><br/>&lt;Find Status="NoResult"/&gt;<br/><br/>**Sample Response:**<br/><br/>&lt;Find Status="Success"&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Resident[0]&lt;/Id&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId&gt;vcp7j77ljm-1451422269089&lt;/SmartphoneId&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LocationHome&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;47.0&lt;/X&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;100.0&lt;/Y&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LocationHome&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;PhotosTaken&gt;0&lt;/PhotosTaken&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;IsInfluencer&gt;true&lt;/IsInfluencer&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/>&lt;/Find&gt;|
+|4|Query the residents’ Ps, Pb, Social Deterrance, Social Exposure, Direct Deterrance, Hs, Hss, Hb, TotalAwareness, AwarenessMsg, AwarenessInf, TotalIncentive, IncentiveRecognition, IncentiveCommunity, C (cost of action) and P (individual preference)<br/><br/>*Query the Residents Model. There are 2500 residents in total. You can get data for all 2500 Residents using following query. Each Resident has an Id  in the following format: Resident[0], Resident[1], … Resident[2499]*<br/><br/>&lt;Query&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/>&lt;/Query&gt;<br/>*In order to Query a particular Resident (say – Resident[80]) by specific Id simply replace*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;**&lt;Id eq=”Resident[80]”&gt;**<br/><br/>*Response Contains all the parameters listed in the Resident Model above. Awareness, SocialDeterrence are part of the model.*<br/><br/>**Sample Response:**<br/><br/>&lt;Find Status="Success"&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Resident[0]&lt;/Id&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId&gt;vcp7j77ljm-1451422269089&lt;/SmartphoneId&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LocationHome&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;47.0&lt;/X&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;100.0&lt;/Y&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LocationHome&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;PhotosTaken>0&lt;/PhotosTaken&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;IsInfluencer>false&lt;/IsInfluencer&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/>&lt;/Find&gt;
+|5|Query the residents’ CaughtOnCameraCount and PhotosTaken value<br/><br/>*Query the Residents Model. There are 2500 residents in total. You can get data for all 2500 Residents using following query. Each Resident has an Id  in the following format: Resident[0], Resident[1], … Resident[2499]*<br/><br/>&lt;Query&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&lt;/Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/>&lt;/Query&gt;<br/><br/>*In order to Query a particular Resident (say – Resident[80]) by specific Id simply replace*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;**&lt;Id eq=”Resident[80]”&gt;**<br/><br/>*Response Contains all the parameters listed in the Resident Model above. CaughtOnCameraCount, and PhotosTaken are part of the model.*<br/><br/>**Sample Response:**<br/><br/>&lt;Find Status="Success"&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Resident[0]&lt;/Id&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId&gt;vcp7j77ljm-1451422269089&lt;/SmartphoneId&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LocationHome&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;47.0&lt;/X&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;100.0&lt;/Y&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LocationHome&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;PhotosTaken&gt;0&lt;/PhotosTaken&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;IsInfluencer&gt;false&lt;/IsInfluencer&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/>&lt;/Find&gt;
+||***Neighborhood trash bins related***|
+|6|Query the Id, Location, Capacity of the Trash Bins<br/>*Query the TrashBin Model. There are 25 TrashBins in total. You can get data for all 25 TrashBins using following query. Each TrashBin has an Id  in the following format: Bin[0], Bin[1], … Bin[24]*<br/><br/>&lt;Query&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;TrashBin&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/TrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/>&lt;/Query&gt;<br/><br/>*In order to Query a particular TrashBin (say – Bin[08]) by specific Id simply replace*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;**&lt;Id eq=”Bin[08]”&gt;**<br/><br/>*Response Contains all the parameters listed in the TrashBin Model above. Id, Location and Capacity are part of the model.*<br/><br/>**Sample Response:**<br/><br/>&lt;Result&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;TrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Bin[0]&lt;/Id&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasIBeacon&gt;false&lt;/HasIBeacon&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Location&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;500.0&lt;/Y&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;83.0&lt;/X&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Location&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Capacity&gt;2000&lt;/Capacity&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasRF&gt;false&lt;/HasRF&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/TrashBin&gt;<br/> &lt;/Result&gt;|
+|7|Query the iBeacon status (whether iBeacon detection is enabled by controller), and RFsensor status (whether RF sensor is instrumented) of the Trash Bins<br/><br/>*Every TrashBin has iBeacon and RF attribute.*<br/><br/>**To see if iBeacon is attached?**<br/><br/>*Query the TrashBin Model. There are 25 TrashBins in total. You can get data for all 25 TrashBin’s iBeacon status using following query. Each TrashBin has an Id  in the following format: Bin[0], Bin[1], … Bin[24]*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;TrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasIBeacon&gt;true&lt;/HasIBeacon&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/TrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>*In order to Query a particular TrashBin (say – Bin[08]) by specific Id simply replace*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;**&lt;Id eq=”Bin[08]”&gt;**<br/><br/>**To see if RF is attached?**<br/><br/>*Query the TrashBin Model. There are 25 TrashBins in total. You can get data for all 25 TrashBin’s RF status using following query. Each TrashBin has an Id  in the following format: Bin[0], Bin[1], … Bin[24]*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;TrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasRF&gt;true&lt;/HasRF&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/TrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>*In order to Query a particular TrashBin (say – Bin[08]) by specific Id simply replace*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;**&lt;Id eq=”Bin[08]”&gt;**<br/><br/>*If there are no TrashBins will attached iBeacon or RF you get empty response.*<br/><br/>**Empty response is:**<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find Status="NoResult"/&gt;|
+|8|IF the developer has instrumented controllers at any bins to detect iBeacon, he/she will receive messages that contain the ResidentID who is currently within 10 meters range on the same street of the respective trash bin. (This can be used by the developer to send relevant awareness messages to residents at the right timing).<br/><br/>*Finding a Resident closer to a TrashBin is a 3-step process:*<br/><br/>**Step 1: Instrument iBeacon Controller to TrashBin**<br/>**How to Instrument iBeacon Controller to TrashBin:**<br/>In order to instrument a TrashBin with iBeacon Controller run the following Query:<br/>&lt;Atomiton.TqlInterface.InstrumentTrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;BinId&gt;Bin[0]&lt;/BinId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;IBeacon&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentTrashBin&gt;<br/><br/>**Sample Response:**<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;SetStatus wid="Bin[0]" Target="Bin.HasIBeacon" Status="Success" Timestamp="1452032395003"/&gt;<br/><br/>**Step 2: Open a connection to a Topic on WebSocket Transport**<br/><br/>*ws://&lt;hostname&gt;:&lt;yourport&gt;/Topic*<br/><br/>Filter the responses and look for SmartphoneId parameter.The result will be of the form:&lt;Result&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId&gt;sm4odx2fwa-1451951255967&lt;/SmartphoneId&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Location&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;500.0&lt;/X&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;505.0&lt;/Y&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Location&gt;<br/> &lt;/Result&gt;<br/><br/>**Step 3: Corelate SmartphoneId with the ResidentId**<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId eq ="fcsngstlc4-1452021443306"/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/>&lt;/Query&gt;<br/><br/>**Sample Response which contains ResidentID**<br/><br/>&lt;Find Status="Success"&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Resident[1]&lt;/Id&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LocationHome&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;162.0&lt;/X&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;300.0&lt;/Y&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LocationHome&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;PhotosTaken&gt;0&lt;/PhotosTaken&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;IsInfluencer&gt;false&lt;/IsInfluencer&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId&gt;fcsngstlc4-1452021443306&lt;/SmartphoneId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/> &lt;/Find&gt;<br/><br/>|
+|9|IF the developer has instrumented RFsensor, he/she will receive the updates on the trash bins “PercentFilled” value every hour (game time). (This can be used by the developers to more efficiently route the waste pickup trucks.<br/><br/>Finding the percent filled of a given TrashBin is a 2-step process:<br/><br/>**Step 1: Instrument RF Controller to TrashBin**<br/><br/>**How to Instrument RF Controller to TrashBin:**<br/><br/>In order to instrument a TrashBin with RF Controller run the following Query:<br/>&lt;Atomiton.TqlInterface.InstrumentTrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;BinId&gt;Bin[0]&lt;/BinId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;RF&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentTrashBin&gt;<br/><br/>**Sample Response:**<br/><br/>&lt;SetStatus wid="Bin[0]" Target="Bin.HasRF" Status="Success" Timestamp="1452034029916"/&gt;<br/><br/>**Step 2: Open a connection to a Topic on WebSocket Transport**<br/><br/>*ws://&lt;hostname&gt;:&lt;yourport&gt;/Topic*<br/><br/>Filter the responses and look for PercentFilled parameter. The result will be of the form:<br/><br/>&lt;Publish Topic="Notifications"&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Bin[0]&lt;/Id&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Sensor&gt;RF&lt;/Sensor&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;PercentFilled&gt;0&lt;/PercentFilled&gt;<br/> &lt;/Publish&gt;<br/><br/>PercentFilled parameter contains the value that is filled|
+||***Street posts (poles) related***|
+|10|Query the StreetPostID, StreetPostLocation, StreetID, and CornerCoordinates of the street posts<br/><br/>*Query the StreetPole Model. There are 121 Street Poles in total. You can get data for all 121 Poles using following query. Each Pole has an Id  in the following format: Pole[0], Pole[1], … Pole[120]*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;StreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/StreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>*In order to Query a particular Pole (say – Pole[80]) by specific Id simply replace*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;**&lt;Id eq=”Pole[80]”&gt;**<br/><br/>Response Contains all the parameters listed in the StreetPole Model above. StreetPostID is Id, StreetPostLocation is Location are part of the model.<br/><br/>**Sample Response:**<br/><br/>&lt;Find Status="Success"&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;StreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Pole[0]&lt;/Id&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Location&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;0.0&lt;/Y&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;0.0&lt;/X&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Location&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasOdor&gt;false&lt;/HasOdor&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasIBeacon&gt;false&lt;/HasIBeacon&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/StreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/> &lt;/Find&gt;<br/>_\*Note that there is no direct way to know the StreetSite (dump site) to from the StreetPole. You will need to instrument the Odor Sensor on the Poles to figure out the StreetSite. Once instrumented you can query the StreetSite Model to get the Dump site location and ID._|
+|11|Query the status of OdorSensor (whether odor sensor is placed to detect odor from nearby street dump sites) and status if iBeacon (whether controller is placed to detect iBeacon signals from smart  phones)<br/><br/>*Query all StreetPoles where OdorSensor is installed:*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;StreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasOdor&gt;true&lt;/HasOdor&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/StreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>*Query all StreetPoles where iBeacon is installed*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;StreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasIBeacon&gt;true&lt;/HasIBeacon&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/StreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>*In order to query a particular StreetPole simply replace*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =””/&gt;<br/><br/>with<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;**&lt;Id eq=”Pole[0]”/&gt;** to get info about Pole number 0<br/><br/>*If there is no data the response will be :*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find Status="NoResult"/&gt;<br/>|
+|12|IF the OdorSensor is instrumented on any street post, the developer can query every single dump site. The OdorSensor can detect the presence of street dump site(s) within 50 meters range on the adjacent streets<br/><br/>*Querying the Street Dump site requires that Odor Sensor be installed in proper place.*<br/><br/>**Query to install a Odor sensor:**<br/><br/>&lt;Atomiton.TqlInterface.InstrumentStreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;PoleId&gt;Pole[80]&lt;/PoleId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;Odor&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentStreetPole&gt;<br/><br/>*On successful installation you get following Response:*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Source&gt;InstrumentPole&lt;/Source&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Status&gt;Success&lt;/Status&gt;<br/><br/>*If you try to install a Odor sensor that is already installed you get following response:*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Source&gt;InstrumentPole&lt;/Source&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Status&gt;Error&lt;/Status&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Error&gt;Pole already has Odor&lt;/Error&gt;<br/><br/>*Once the Odor Sensor is installed, you can query StreetSite Model to see if any data starts appearing. To Query the StreetSite simply use:*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;StreetSite&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/StreetSite&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>**Sample response:**<br/><br/>&lt;Find Status="Success"&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;StreetSite&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;DumpSite[1]&lt;/Id&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Location&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;256.0&lt;/Y&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;700.0&lt;/X&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Location&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/StreetSite&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/> &lt;/Find&gt;<br/><br/>| 
+|13|IF the iBeacon is enabled by controller on the post, the developer will receive messages that contain the ResidentID who is currently within 10 meters range on the adjacent streets<br/><br/>*Finding a Resident closer to a StreetPole is a 3-step process:*<br/><br/>**Step 1: Instrument iBeacon Controller to StreetPole**<br/><br/>**How to Instrument iBeacon Controller to TrashBin:**<br/><br/>In order to instrument a TrashBin with iBeacon Controller run the following Query:<br/><br/>&lt;Atomiton.TqlInterface.InstrumentStreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;BinId&gt;Pole[60]&lt;/BinId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;IBeacon&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentStreetPole&gt;<br/><br/>**Sample Response:**<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;SetStatus wid="Pole[60]" Target="Pole.HasIBeacon" Status="Success" Timestamp="1452036520765"/&gt;<br/><br/>**Step 2: Open a connection to a Topic on WebSocket Transport**<br/><br/>*ws://&lt;hostname&gt;:&lt;yourport&lt;/Topic*<br/><br/>Filter the responses and look for SmartphoneId parameter. The result will be of the form:<br/><br/>&lt;Result&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId&gt;sm4odx2fwa-1451951255967&lt;/SmartphoneId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Location&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;500.0&lt;/X&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;505.0&lt;/Y&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Location&gt;<br/> &lt;/Result&gt;<br/><br/>**Step 3: Corelate SmartphoneId with the ResidentId**<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId eq ="fcsngstlc4-1452021443306"/&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>**Sample Response which contains ResidentID**<br/><br/>&lt;Find Status="Success"&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Resident&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;Resident[1]&lt;/Id&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LocationHome&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;X&gt;162.0&lt;/X&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Y&gt;300.0&lt;/Y&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LocationHome&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;PhotosTaken&gt;0&lt;/PhotosTaken&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;IsInfluencer&gt;false&lt;/IsInfluencer&gt;<br/>            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;SmartphoneId&gt;fcsngstlc4-1452021443306&lt;/SmartphoneId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Resident&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/> &lt;/Find&gt;<br/><br/>|
+||***Street dump sites related***|
+|14|Query the StreetSiteID. The developer will only know the ID and number (counts) of the street dump site. Any other street dump site information the developer can acquire is via indirect means, such as instrumenting controllers and sensors.<br/><br/>Same as 12.|
+||***Waste transport worker related***|
+|15|Query the WorkerID, SmartPhoneID of the workers<br/><br/>*Query the Worker Model. There are 3 Transport Worker in total. You can get data for all 3 Workers using following query.*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Worker&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Worker&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>Response Contains all the parameters listed in the Worker Model above. WorkerID and SmartPhoneID is  part of the model.|
+|16|Query the, ParkedLocation, LandfillLocation, VolumeCapacity and DefaultRoute for the worker<br/><br/>*Query the Worker Model. There are 3 Transport Worker in total. You can get data for all 3 Workers using following query.*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Worker&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Worker&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>Response Contains all the parameters listed in the Worker Model above. ParkedLocation, LandfillLocation, VolumeCapacity and DefaultRoute are *part of the model.*|
+|17|Query the OBD status (yes or no) of the vehicles<br/><br/>*Note that Vehicle data is part of the Worker Model. You can query if the Worker Model has OBD Attached using following query.*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Worker&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;HasOBD&gt;true&lt;/HasOBD&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Worker&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>*If there is no data the response contains*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find Status="NoResult"/&gt;|
+|18|Query the DayVolume of the previous day. The DayVolume is calculated and updated at the end of each day day<br/><br/>*Total amount of trash that worker has transported and previous day; Developers will receive the notification.*|
+|19|IF the developer has enabled OBD on any vehicle, he/she will continuously receive the CurrentLocation and Speed information of the vehicle (every 5 min of game time).<br/><br/>**If** *OBD is enabled; Notification is sent with Location and Speed Information.*<br/><br/>**Step1: To enable OBD Use the following Query:**<br/><br/>&lt;Atomiton.TqlInterface.InstrumentWorker&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;WorkerId&gt;Worker[1]&lt;/WorkerId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;OBD&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentWorker&gt;<br/><br/>**Step 2: Open a connection to a Topic on WebSocket Transport**<br/><br/>*ws://&lt;hostname&gt;:&lt;yourport&gt;/Topic*<br/><br/>Filter the responses and look for Speed parameter. The result will be of the form:|
+||***Waste management company related***|
+|20|Query the BaseRevenue, TotalWasteTransported, WeightBasedRevenue, TotalRevenue, TotalBudget and BudgetBalance<br/><br/>*Query the Company Model. There is 1 Company.*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Company&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Company&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>**Sample response:**<br/><br/>&lt;Find Status="Success"&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Result&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Company&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;WasteManagement&lt;/Id&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Revenue&gt;0.0&lt;/Revenue&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;WasteVol&gt;0&lt;/WasteVol&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;AccountBalance&gt;889.0&lt;/AccountBalance&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LifetimeRevenue&gt;0.0&lt;/LifetimeRevenue&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;LifetimeWasteVol&gt;0&lt;/LifetimeWasteVol&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Company&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Result&gt;<br/> &lt;/Find&gt;<br/><br/>|
+|21|Query the Campaign status<br/><br/>*You can query if the Campaign Status of a company using following query*<br/><br/>&lt;Query&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Find&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Company&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Id ne =""/&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;CampaignActive&gt;true&lt;/CampaignActive&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Company&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;/Find&gt;<br/> &lt;/Query&gt;<br/><br/>*If no active Compaign then the response will be:*<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Find Status="NoResult"/&gt;|
+||***Other***|
+|22|Subscribe to or query the artificial clock time<br/><br/>*Subscribing to Artificial Clock is as simple as opening a webscoket connection to a Topic and listening for Ticks.*<br/><br/>**Step 1: Open a connection to a Topic on WebSocket Transport**<br/><br/>ws://&lt;hostname&gt;:&lt;yourport&gt;/Topic<br/><br/>*Look for responses of the form:*<br/><br/>&lt;Publish Topic="Notifications"&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Id&gt;VClock&lt;/Id&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Tick&gt;33214&lt;/Tick&gt;<br/> &lt;/Publish&gt;<br/><br/>Based on the tick value one can find out about the time of day etc.|
+
+### Part 3. What you can do
+||Descriptions and API|
+|--------|--------|
+||***Simulation Lifecycle related***|
+|1|Reset the simulation<br/><br/>&lt;Atomiton.TqlInterface.ResetSim&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Start&gt;(flag true/false of whether to start simulation. Default is false)&lt;/Start&gt;<br/>&lt;/Atomiton.TqlInterface.ResetSim&gt;<br/><br/>*You can reset the dataset and optionally start the simulation using same query.*<br/><br/>*To Reset database without starting the simulation:*<br/>&lt;Atomiton.TqlInterface.ResetSim&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Start&gt;false&lt;/Start&gt;<br/> &lt;/Atomiton.TqlInterface.ResetSim&gt;<br/><br/>*To Reset database and start the simulation:*<br/>&lt;Atomiton.TqlInterface.ResetSim&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Start&gt;true&lt;/Start&gt;<br/> &lt;/Atomiton.TqlInterface.ResetSim&gt;<br/><br/>
+|2|Resume the simulation<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Atomiton.TqlInterface.ResumeSim/&gt;<br/><br/>Once Simulation is resumed, you will begin to receive notifications on the Topic over a WebSocket (if connection is opened).|
+|3|Pause the simulation<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Atomiton.TqlInterface.PauseSim/&gt;<br/><br/>*Once the Simulation is Paused, you will not receive any notification on the Topic over a WebSocket.*| 
+||***Residents related***|
+|1 (P1)|Send Awareness Messages to any chosen residents, based on their SmartPhoneID.  Although the developer can send the message at any time, the message will only have effect - add to the resident’s AwarenessMsg value – if the resident receives it at the right timing, that is, when the resident is near a street dump site or a neighborhood bin. It costs the Waste Management company $0.01 per message. *The developer will only be able to know the residents’ presence around street dump sites and neighborhood trash bins if the developer has instrumented controllers at those trash bins or street posts.*<br/><br/>&lt;Atomiton.TqlInterface.SendTextMessage&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;PhoneId&gt;(Insert Id of Phone)&lt;/PhoneId&gt;<br/>&lt;/Atomiton.TqlInterface.SendTextMessage&gt;<br/><br/>**Example:**<br/><br/>&lt;Atomiton.TqlInterface.SendTextMessage&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;PhoneId>nskf64sboy-1452021443306</PhoneId&gt;&lt;/Atomiton.TqlInterface.SendTextMessage&gt;|
+|2 (P1)|Decide to award cash incentive (C) to chosen or all residents for each day the residents visit the designated trash bin. Once the amount is set, the cash amount (C) will automatically be awarded to the resident each time they disposed at the bin. This C will count as part of the resident’s utility function to influence where he/she goes to dispose of garbage.*The developer only has this option if he/she has enabled iBeacon detection (by installing a controller) on the specific bin in the specific resident’s neighborhood, which can detect residents’ smart phones.*<br/><br/>&lt;Atomiton.TqlInterface.SetCashIncentive&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;BinId&gt;&lt;/BinId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;IncentiveAmount&gt;&lt;/IncentiveAmount&gt;<br/> &lt;/Atomiton.TqlInterface.SetCashIncentive&gt;<br/><br/>| 
+|3 (P1)|Run educational campaigns to increase awareness. For developers, Run Campaign = (1) activate campaign + (2) select influencer(s) + (3) schedule which day(s).  Developer can set the Campaign status to on for one day, or can schedule the campaign to be on for some consecutive days. For each day the “Campaign” is on, it costs the Waste Management company a fixed amount of $50, which will be deducted from the budget by the system. Campaign only has effect when there are influencers. Developers select influencers among the residents. By setting the resident’s Influencer attribute to “yes”, or “no”. For each day for one resident to be an Influencer, it costs the Waste Management company a fixed amount of money of $25, which will be deducted from the budget by the system. Each influencer adds to all residents’ awareness level. The more days the campaign continues, the more awareness will be created. Developers can select multiple influencers.<br/><br/>&lt;Atomiton.TqlInterface.SetInfluencer&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;CompanyId&gt;(Insert Id of Company)&lt;/CompanyId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;ResidentId&gt;(Insert Id of Resident)&lt;/ResidentId&gt;<br/> &lt;/Atomiton.TqlInterface.SetInfluencer&gt;<br/><br/>|
+|4 (P2)|Run recognition program. The developer can announce that the Waste Management company will reward top vigilantes. The developer needs to decide the number of vigilantes the company will announce to recognize. It can be between 1 to 5. Each one cost $50, which will be deducted from the budget of the Waste Management company. **This is a one-time decision and cost**. This announcement will act as an incentive for EVERY resident on every day– it will increase the residents’ incentive value for taking photos.<br/><br/>*Code/Queries/Macro, etc.*|
+||***Neighborhood trash bin related***|
+|5 (P1)|Instrument the Trash Bins with controllers that can detect iBeacon from residents’ smartphones. It costs $50 per trash bin, one time. The budget will be deducted from the Waste Management company.The developer can choose to instrument some or all of the trash bins. Additional calls to instrument already instrumented bin has no effect.<br/><br/>&lt;Atomiton.TqlInterface.InstrumentTrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;BinId&gt;(Insert Id of the Bin)&lt;/BinId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;IBeacon&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentTrashBin&gt;<br/><br/>| 
+|6. (P1)|Instrument the Trash Bins with RF sensors that can detect and report PercentFilled of the bin. It costs $5 per trash bin, one time. The budget will be deducted from the Waste Management company. The developer can choose to instrument some or all of the trash bins.<br/><br/>&lt;Atomiton.TqlInterface.InstrumentTrashBin&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;BinId&gt;(Insert Id of the Bin)&lt;/BinId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;RF&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentTrashBin&gt;<br/><br/>|
+||***Street posts related***|
+|7. (P1)|Instrument the street posts with controllers that can detect iBeacon from residents’ smart phones. It costs $50 per street post, one time. The budget will be deducted from the Waste Management company.*The developer can choose to instrument some or all of the posts, although instrumenting on street blocks without a street dump site will be a waste of money. The developer can make this decision at any time. He or she can decide to instrument only after a street dump site is detected at a street block by the OdorSensors*<br/><br/>&lt;Atomiton.TqlInterface.InstrumentStreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;PoleId&gt;(Insert Id of the Bin)&lt;/PoleId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;IBeacon&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentStreetPole&gt;<br/><br/>| 
+|8 (P1)|Instrument the street posts with odor sensors that can detect the presence of street dump sites. It costs $2 per post, one time. The budget will be deducted from the Waste Management company.*The developer can choose to instrument some or all of the posts.*<br/><br/>&lt;Atomiton.TqlInterface.InstrumentStreetPole&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;PoleId&gt;(Insert Id of the Bin)&lt;/PoleId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;SensorType&gt;Odor&lt;/SensorType&gt;<br/> &lt;/Atomiton.TqlInterface.InstrumentStreetPole&gt;| 
+||***Waste transport worker related***|
+|9 (P1)|Connect or disconnect OBD. The developer can decide to connect OBD on some or all of the waste transport vehicles. It costs $65 one time and $10 per month per vehicle afterwards. He can decides to disconnect OBD for any vehicles, which will stop the $10 per month fee, but will not recover the $65 one time costs. OBD will allow developers to have the current location and speed data of the vehicles.<br/><br/>&lt;Atomiton.TqlInterface.InstrumentWorker&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;WorkerId&gt;(Insert Id of Worker)&lt;/WorkerId&gt;<br/>&lt;/Atomiton.TqlInterface.InstrumentWorker&gt;|
+|10 (P1)|Provide GivenRoute to the worker. The GivenRoute must be sent to the worker before 10 AM each day for the worker to follow. If sent after 10 AM, it will become the GivenRoute followed by the worker on the next day, unless it is replaced by new a GivenRoute. The GivenRoute is a list of Trash Bin IDs and StreetIDs, with a prescribed sequence. When the worker drivers to the Street, it will pick up the waste from the street dump site(s) in that block, if there is any. When the worker drives to the Trash Bin, it will pick up waste from the bin, if there is any. It will do so until is volume capacity is filled.<br/><br/>&lt;Atomiton.TqlInterface.SetRoute&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;WorkerId&gt;(Insert Id of Worker)&lt;/WorkerId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Site&gt;(Id of site 1)&lt;/Site&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;…<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;Site&gt;(Id of site N)&lt;/Site&gt;<br/> &lt;/Atomiton.TqlInterface.SetRoute&gt;|
+|11 (P2)|Send slack worker messages. If the developer has connected the OBD data form the vehicles, he will be able to detect slack (defined as stopping the vehicle for longer than 15 minutes during operating hours), and identify who is the worker SmartPhoneID. He can decide to send a message ot the SmartPhone ID during this time. Messages sent during slack time will stop the current slack, and will also modify the “SlackTendency” variable of the worker, making him less likely to slack in the future. Even though the developer can send workers messages at any time, only messages sent during slack time will have an effect. It costs the Waste Management company $0.01 per message<br/><br/>&lt;Atomiton.TqlInterface.SendTextMessage&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;CompanyId&gt;(Insert Id of Company)&lt;/CompanyId&gt;<br/> &nbsp;&nbsp;&nbsp;&nbsp;&lt;PhoneId&gt;(Insert Id of Phone)&lt;/PhoneId&gt;<br/> &lt;/Atomiton.TqlInterface.SendTextMessage&gt;|
+|12 (P2)|Activate bonus program for waste transport workers. The developer can decide to activate this program at any time. It is a one-time decision and cannot be reversed. Once activated, it will cost the Waste Management company $2 per worker per day, until the end of the game. As soon as the bonus program is activated, each waste transport worker’s SlackTendency will be cut by half.<br/><br/>*Code/Queries/Macro, etc.*| 
+
+
