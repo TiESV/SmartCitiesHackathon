@@ -1,7 +1,11 @@
 #Parking in the U.S.
 ##Why Parking
 
-Describe parking problem in the U.S.
+A typical driver spends 106 days of their life searching for parking space. 41% of drivers describe parking as their single biggest automobile “headache”. Very little information is available to the driver on parking availability and price. The pricing mechanisms for parking that exist today are archaic. A driver ends up either paying too much or not enough.
+
+Here you, the developer, will take on the role of a private parking operator with the goal of optimizing revenue by efficient and competitive management of parking spaces and pricing
+
+![Sample Parking Image](https://github.com/TiESV/SmartCitiesHackathon/blob/master/smartparking/parking.png)
 
 ##Theme Overview
 
