@@ -5,6 +5,8 @@ The 377 million people living in urban India generate 62m tons of garbage every 
 
 As a developer, you will assume the role of private waste management companies that want to efficiently identify, gather and transport solid waste to landfills, while simultaneously preventing random dumping of waste.
 
+![Sample Waste Image](https://github.com/TiESV/SmartCitiesHackathon/blob/master/wastemanagement/waste.png)
+
 
 ## Theme Overview
 ### Set Up
