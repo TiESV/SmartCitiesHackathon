@@ -1,7 +1,10 @@
 # Waste Management in India
 ## Why Waste Management
 
-Describe the waste management problem in India
+The 377 million people living in urban India generate 62m tons of garbage every single year. Waste is typically thrown in government vacant land; drains or littered on streets.  This leads to blockage of drains, contamination of water, air pollution and the spread of disease
+
+As a developer, you will assume the role of private waste management companies that want to efficiently identify, gather and transport solid waste to landfills, while simultaneously preventing random dumping of waste.
+
 
 ## Theme Overview
 ### Set Up
