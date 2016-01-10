@@ -7,6 +7,8 @@ The World Economic Forum announced this year that the water crisis is the #1 glo
 Women and girls especially (like the one shown in the picture) bear the burden of walking miles at a time to gather water from streams and ponds – full of water-borne disease that is making them and their families sick.
  
 Illness from drinking dirty water and the time lost in fetching it robs entire communities of their future.
+
+![Sample Water Image](https://github.com/TiESV/SmartCitiesHackathon/blob/master/watermanagement/water.png)
  
 ##Theme Overview
 
