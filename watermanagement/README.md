@@ -13,7 +13,7 @@ Illness from drinking dirty water and the time lost in fetching it robs entire c
 ##Theme Overview
 
 ###Set Up
-This hackathon game is set up in the city of _____ in Ethiopia, where most residents do not have piped water access. The following actors and resources are in play:
+This hackathon game is set up in Ethiopia, where most residents do not have piped water access. The following actors and resources are in play:
 
 #####Residents:
 2,500 residents who need to obtain 125 liters of water each day for their families. Residents have a small monthly budget to buy water.
@@ -28,12 +28,12 @@ This hackathon game is set up in the city of _____ in Ethiopia, where most resid
 A not-for-profit organization with the mission of improving clean water access
 
 ###The Developer’s Role
-As a developer, you play the role of the NGO in this game. Your goal is to maximize the number of residents who can have clean water access each day. You have a budget of $_____ to manage, and a number of means of intervention to achieve this goal.
+As a developer, you play the role of the NGO in this game. Your goal is to maximize the number of residents who can have clean water access each day. You have a budget of $125 to manage, and a number of means of intervention to achieve this goal.
  
-Your game score is determined by _____________. It will be one of the main factors in evaluating your hackathon performance.
+Your game score is determined by the total number of person days residents have access to water. It will be one of the main factors in evaluating your hackathon performance.
  
 ###The Rhythm
-The game activities run on a simulated daily cycles according to an artificial clock with or without your intervention. One day in the game is equivalent to ________ in real time. The game repeats for ______ days before it ends.
+The game activities run on a simulated daily cycles according to an artificial clock with or without your intervention. This is based on the virtual clock speed. For example, if the virtual clock goes by 1 hour each 30 seconds, then one day in the game is equivalent to 2,880 seconds, which is about 48 minutes in real time. The game repeats for 90 days before it ends.
  
 ##How It Works
 
