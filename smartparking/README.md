@@ -254,7 +254,7 @@ This section contains three parts. Part 1 describes the models running in the sy
 |--------|--------|
 |***<div style="text-align:center">Drivers</div>***|        |
 |DriverID|*Unique ID assigned to the Driver*|
-|Decision|*?*|
+|Decision|*Indicates the driver has made a decision about the parking lot*|
 |ParkedLotID|*Lot ID where the driver has last parked the vehicle*|
 |LastUtilityFunction|*Last Utility value (see above for description)*|
 |TimeParked<br/><br/>HomeLocation|*Time the vehicle was last parked<br/><br/>Starting Location of the Driver*|
