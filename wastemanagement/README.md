@@ -227,6 +227,11 @@ This section contains three parts.  Part 1 describes the models running in the s
 _\*Note: Each trash site has an internal visibility flag. Queries for Trash Site and/or Street Dump sites will only return visible results. Trash Bins are always visible. To make a Street Dum site visible, instrument nearby Street Post._
  
 ### Part 2. What information you have and how
+
+## Before you run the wastemanagement queries from TQLStudio Query Editor, make sure that data is initialized. Please refer to onBoarding document on how to access TQLStudio and Query Editor.
+- Execute ResetDatabaseAndStartTheSimulation or ResetDatabaseWithoutStartingTheSimulation to initialize the database
+- To pause the simulation : PauseTheSimulation
+- to start the simulation : resumeTheSimulation
  
 ||Descriptions and API|
 |--------|--------| 
