@@ -294,6 +294,8 @@ This section contains three parts.  Part 1 describes the models running in the s
  - Please note that you need to initialize the data before your run the queries using "initialize" query from the TQLStudio Query Editor. Please refer to your OnBoarding document on how to Login to TQLStudio and access various queries.
  - Start the Simulation using StartExecution Query.
  - Stop the Simulation using StopExecution Query.
+ - 
+### Make sure to run queries over HTTP Endpoint and not Websocket.
 
 ||Descriptions and API|
 |--------|--------|
