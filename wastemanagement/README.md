@@ -228,7 +228,8 @@ _\*Note: Each trash site has an internal visibility flag. Queries for Trash Site
  
 ### Part 2. What information you have and how
 
-## Before you run the wastemanagement queries from TQLStudio Query Editor, make sure that data is initialized. Please refer to onBoarding document on how to access TQLStudio and Query Editor.
+## Before you run the wastemanagement queries:
+- Make sure to initilize the database otherwise the queries will return NoResult.
 - Execute ResetDatabaseAndStartTheSimulation or ResetDatabaseWithoutStartingTheSimulation to initialize the database
 - To pause the simulation : PauseTheSimulation
 - to start the simulation : resumeTheSimulation
