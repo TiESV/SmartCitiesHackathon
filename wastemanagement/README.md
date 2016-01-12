@@ -233,6 +233,9 @@ _\*Note: Each trash site has an internal visibility flag. Queries for Trash Site
 - Execute ResetDatabaseAndStartTheSimulation or ResetDatabaseWithoutStartingTheSimulation to initialize the database
 - To pause the simulation : PauseTheSimulation
 - to start the simulation : resumeTheSimulation
+
+
+### Make sure to run queries over HTTP Endpoint and not Websocket.
  
 ||Descriptions and API|
 |--------|--------| 
