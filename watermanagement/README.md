@@ -198,9 +198,9 @@ The developer can certify the mobile vendors. Certification has the following ef
  
 The certification program costs NGO $_____ to initiate, and $______ per day to run. The program will convert more and more mobile vendors to be certified each day. The developer has to initiate the program. If the developer stops the certification program in the middle, all certified vendors would become uncertified.
  
-##The Developer’s Guide
+## The Developer’s Guide
 This section contains three parts.  Part 1 describes the models running in the system and their attributes. Part 2 describes the queries, subscriptions or notifications available to you. Part 3 describes the actions/interventions you can take via your app to optimize the NGO’s performance results.
-###Part 1. Models and attributes
+### Part 1. Models and attributes
 
 |Models and attributes|Descriptions|
 |--------|--------|
@@ -288,6 +288,12 @@ This section contains three parts.  Part 1 describes the models running in the s
  
  
 ###Part 2. What information you have and how
+
+## Before you run the queries:
+
+ - Please note that you need to initialize the data before your run the queries using "initialize" query from the TQLStudio Query Editor. Please refer to your OnBoarding document on how to Login to TQLStudio and access various queries.
+ - Start the Simulation using StartExecution Query.
+ - Stop the Simulation using StopExecution Query.
 
 ||Descriptions and API|
 |--------|--------|
