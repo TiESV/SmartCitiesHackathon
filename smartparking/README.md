@@ -30,7 +30,7 @@ Your goal is to maximize revenue by setting the right parking price and attracti
 Your game score is determined by your total revenue. It will be one of the main factors in evaluating your hackathon performance.
  
 ###The Rhythm
-The game activities run on a simulated daily cycles according to an artificial clock with or without your intervention. One day in the game is equivalent to ________ in real time. The game repeats for ______ days before it ends.
+The game activities run on a simulated daily cycles according to an artificial clock with or without your intervention. You will get notification on very tick. Each Tick of Virtual Clock is equivalent to 1 Minute of Virtual Time. You will receive Ticks very 2000ms (2s) in real-time. Therefore one day in the game is equivalent to 48 minutes in real time.
  
 ##How It Works
 
