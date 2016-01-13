@@ -32,7 +32,7 @@ As a developer, you play the role of the Waste Management Company in this game. 
 Your game score is determined by the total revenue you earn less the costs incurred. It will be one of the main factors in evaluating your hackathon performance.
  
 ### The Rhythm
-The game activities run on a simulated daily cycles according to an artificial clock with or without your intervention. One day in the game is equivalent to 12 minutes in real time. The game currently runs indefinitely. If you want 30-day time period you can stop the clock after 6 hours (Real time)
+The game activities run on a simulated daily cycles according to an artificial clock with or without your intervention. You will get notification on very tick. Each Tick of Virtual Clock is equivalent to 1 Minute of Virtual Time. You will receive Ticks very 500ms (0.5s) in real-time. Therefore one day in the game is equivalent to 12 minutes in real time. The game currently runs indefinitely. If you want 30-day time period you can stop the clock after 6 hours (Real time)
  
 ## How It Works
 
