@@ -18,7 +18,7 @@ This hackathon game is set up in the city of Sigra *(Varanasi, UP)* in India in 
 
 ##### Resources:
 * 25 neighborhood trash bins
-* 50 street dump sites
+* 200 street dump sites
 * 121 street posts, one at each street intersection
 * 3 waste transport workers driving waste transport vehicles
 * 1 landfill
